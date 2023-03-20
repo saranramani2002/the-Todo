@@ -3,12 +3,12 @@
     margin: 0;
   }
   body {
-    width: 100vw;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
-    background: linear-gradient( 145deg ,blue, rgb(231, 195, 195) ,pink);
+    background-image: linear-gradient( 145deg ,blue, rgb(231, 195, 195) ,pink);
     font-family: sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
   button:hover {
     cursor: pointer;
@@ -87,3 +87,17 @@
     font-size: 1.1rem;
     font-weight: 550;
   }
+
+
+.toast {
+  position:absolute;
+  bottom: 83.8%;
+  left: 80%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  
+}
+

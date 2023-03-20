@@ -28,6 +28,7 @@ function addTodo(item) {
     };
     todos.push(todo);
     addToLocalStorage(todos); 
+    showToast("Todo added successfully!");
     todoInput.value = '';
   }
 }
@@ -82,13 +83,18 @@ function toggle(id) {
 function deleteTodo(id) {
  
   const confirmed = confirm("Are you sure you want to delete this todo?");
-    if (confirmed){
+    if (confirmed == true){
   todos = todos.filter(function(item) {
     
     return item.id != id;
   });
   addToLocalStorage(todos);
-}}
+  showToast("Todo Deleted successfully!");
+}
+else{
+  return false;
+}
+}
 getFromLocalStorage();
 todoItemsList.addEventListener('click', function(event) {
  
@@ -109,6 +115,7 @@ todoItemsList.addEventListener('click', function(event) {
       todoInput.value = todo.name;
       todos.splice(todoIndex, 1);
       addToLocalStorage(todos);
+      
     }
   }
   
@@ -126,4 +133,13 @@ todoItemsList.addEventListener('click', function(event) {
     }
   });
 });
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.classList.add('toast');
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}
 }
