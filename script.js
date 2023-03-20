@@ -1,8 +1,5 @@
-
 const todoForm = document.querySelector('.todo-form');
-
 const todoInput = document.querySelector('.todo-input');
-
 const todoItemsList = document.querySelector('.todo-items');
 let todos = [];
 todoForm.addEventListener('submit', function(event) {
@@ -71,15 +68,15 @@ function getFromLocalStorage() {
     renderTodos(todos);
   }
 }
-function toggle(id) {
-  todos.forEach(function(item) {
+// function toggle(id) {
+//   todos.forEach(function(item) {
     
-    if (item.id == id) {
+//     if (item.id == id) {
       
-      item.completed = !item.completed;
-    }
-  });addToLocalStorage(todos);
-}
+//       item.completed = !item.completed;
+//     }
+//   });addToLocalStorage(todos);
+// }
 function deleteTodo(id) {
  
   const confirmed = confirm("Are you sure you want to delete this todo?");

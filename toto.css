@@ -26,29 +26,29 @@
     
   }
   .todof{
-    margin:20%;
+    margin:10%;
   }
   .todo-form {
     margin: 40px 0px;
-  }.todo-input {
-    width: 75%;
+  }
+  .todo-input {
+    width: 80%;
     border: none;
-    outline: none;
     border-radius: 5px;
     padding: 10px;
     margin-right: 10px;
     font-size: 1rem;
-  }.add-button {
+  }
+  .add-button {
     background-color: #acacbd;
     color: #fff;
     border: none;
-    outline: none;
     border-radius: 5px;
     padding: 7px;
     font-size: 1.2rem;
   }
   .todo-items {
-    min-width: 350px;
+    min-width: 370px;
   }
   .item {
     background-color: #fff;
@@ -62,19 +62,18 @@
   .item:last-child {
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
-  }.checkbox {
+  }
+  .checkbox {
     margin-right: 10px;
   }
   .delete-button {
     float: right;
     background-color:rgb(90, 84, 84);
     border: none;
-    outline: none;
     border-radius: 7px;
     padding: 2px 5px;
     margin-left: 10px;
-    font-size: 1.1rem;
-    font-weight: 550;
+    font-size: 1.1rem; 
   }
   .edit-button {
     float: right;
