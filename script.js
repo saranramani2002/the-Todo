@@ -68,15 +68,16 @@ function getFromLocalStorage() {
     renderTodos(todos);
   }
 }
-// function toggle(id) {
-//   todos.forEach(function(item) {
+function toggle(id) {
+  todos.forEach(function(item) {
     
-//     if (item.id == id) {
+    if (item.id == id) {
       
-//       item.completed = !item.completed;
-//     }
-//   });addToLocalStorage(todos);
-// }
+      item.completed = !item.completed;
+    }
+  });addToLocalStorage(todos); 
+  showToast("Todo completed successfully!");
+}
 function deleteTodo(id) {
  
   const confirmed = confirm("Are you sure you want to delete this todo?");
@@ -92,6 +93,7 @@ else{
   return false;
 }
 }
+//To display the items in the screen after deletion  
 getFromLocalStorage();
 todoItemsList.addEventListener('click', function(event) {
  
@@ -115,7 +117,7 @@ todoItemsList.addEventListener('click', function(event) {
       
     }
   }
-  
+  // The Local storage updated with the  edited list and display on the screen
   getFromLocalStorage();
   
   todoItemsList.addEventListener('click', function(event) {
@@ -130,8 +132,10 @@ todoItemsList.addEventListener('click', function(event) {
     }
   });
 });
+
+//toast message
 function showToast(message) {
-  const toast = document.createElement('div');
+  const toast = document.createElement('div');  //is to organize the toast in a form
   toast.classList.add('toast');
   toast.textContent = message;
   document.body.appendChild(toast);
