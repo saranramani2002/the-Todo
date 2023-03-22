@@ -3,7 +3,7 @@ const todoInput = document.querySelector('.todo-input');
 const todoItemsList = document.querySelector('.todo-items');
 let todos = [];
 renderTodos(todos);
-
+let isEdited = false;
 
 todoForm.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -12,10 +12,10 @@ todoForm.addEventListener('submit', function (event) {
 
 function addTodo(item) {
   if (item == '')
-    showToast("Your Todo list is still empty");
+    alert("Your Todo list is still empty");
   const exists = todos.some(todo => todo.name === item);
   if (exists) {
-    showToast("This task is already exist!");
+    alert("This task is already exist!");
   }
 
   else if (item !== '') {
@@ -27,7 +27,12 @@ function addTodo(item) {
     };
     todos.push(todo);
     addToLocalStorage(todos);
-    showToast("Todo added successfully!");
+    if (isEdited) {
+      showToast('edited')
+    } else {
+      showToast('added');
+    }
+
     todoInput.value = '';
 
   }
@@ -40,9 +45,7 @@ function renderTodos(todos) {
     const checked = item.completed ? 'checked' : null;
     const li = document.createElement('li');
     li.setAttribute('class', 'item');
-
     li.setAttribute('data-key', item.id);
-
     if (item.completed === true) {
       li.classList.add('checked');
     } li.innerHTML = `
@@ -51,24 +54,19 @@ function renderTodos(todos) {
       <button class="delete-button">🗑️</button>
       <button class="edit-button">✏️</button>
     `;
-
     todoItemsList.append(li);
   });
 }
 
 function addToLocalStorage(todos) {
-
   localStorage.setItem('todos', JSON.stringify(todos));
-
   renderTodos(todos);
 }
 
 
 function getFromLocalStorage() {
   const reference = localStorage.getItem('todos');
-
   if (reference) {
-
     todos = JSON.parse(reference);
     renderTodos(todos);
   }
@@ -82,7 +80,8 @@ function toggle(id) {
 
       item.completed = !item.completed;
     }
-  }); addToLocalStorage(todos);
+  });
+  addToLocalStorage(todos);
 
 }
 
@@ -92,11 +91,10 @@ function deleteTodo(id) {
   if (confirmed == true) {
     todos = todos.filter(function (item) {
       return item.id != id;
-
     });
 
     addToLocalStorage(todos);
-    showToast("Todo Deleted successfully!");
+
   }
 }
 
@@ -114,23 +112,23 @@ todoItemsList.addEventListener('click', function (event) {
   }
   if (event.target.classList.contains('edit-button')) {
     editTodo(event.target.parentElement.getAttribute('data-key'));
+    disableButtons(true);
   }
 });
 
 function editTodo(id) {
   const todoIndex = todos.findIndex(item => item.id == id);
-  if (todoIndex !== 1) {
+  if (todoIndex !== -1) {
     const todo = todos[todoIndex];
     todoInput.value = todo.name;
     todos.splice(todoIndex, 1);
-    addToLocalStorage(todos);
-
   }
+  isEdited = true;
 }
 
-
 //toast message
-function showToast(message) {
+function showToast(type) {
+  let message = type === 'edited' ? 'Your task has been Updated' : 'New task has been Added';
   const toast = document.createElement('div');  //is to organize the toast in a form
   toast.classList.add('toast');
   toast.textContent = message;
@@ -139,3 +137,13 @@ function showToast(message) {
     toast.remove();
   }, 3000);
 }
+
+
+//To prevent another click on eddit
+const disableButtons = (bool) => {
+  let editButtons = document.getElementsByClassName("edit-button");
+  Array.from(editButtons).forEach((element) => {
+    element.disabled = bool;
+  })
+}
+////toast for delete remaining
