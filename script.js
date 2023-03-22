@@ -12,10 +12,10 @@ todoForm.addEventListener('submit', function (event) {
 
 function addTodo(item) {
   if (item == '')
-    showToast("Enter Todo statement");
+    showToast("Your Todo list is still empty");
   const exists = todos.some(todo => todo.name === item);
   if (exists) {
-    showToast("This todo already exists!");
+    showToast("This task is already exist!");
   }
 
   else if (item !== '') {
@@ -37,11 +37,8 @@ function renderTodos(todos) {
 
   todoItemsList.innerHTML = '';
   todos.forEach(function (item) {
-
     const checked = item.completed ? 'checked' : null;
-
     const li = document.createElement('li');
-
     li.setAttribute('class', 'item');
 
     li.setAttribute('data-key', item.id);
@@ -95,7 +92,9 @@ function deleteTodo(id) {
   if (confirmed == true) {
     todos = todos.filter(function (item) {
       return item.id != id;
+
     });
+
     addToLocalStorage(todos);
     showToast("Todo Deleted successfully!");
   }
@@ -113,35 +112,22 @@ todoItemsList.addEventListener('click', function (event) {
 
     deleteTodo(event.target.parentElement.getAttribute('data-key'));
   }
-
-
-  function editTodo(id) {
-    const todoIndex = todos.findIndex(item => item.id == id);
-    if (todoIndex !== 1) {
-      const todo = todos[todoIndex];
-      todoInput.value = todo.name;
-      todos.splice(todoIndex, 1);
-      addToLocalStorage(todos);
-
-    }
+  if (event.target.classList.contains('edit-button')) {
+    editTodo(event.target.parentElement.getAttribute('data-key'));
   }
- 
- 
-  // The Local storage updated with the  edited list and display on the screen
-  getFromLocalStorage();
-
-  todoItemsList.addEventListener('click', function (event) {
-    if (event.target.type === 'checkbox') {
-      toggle(event.target.parentElement.getAttribute('data-key'));
-    }
-    if (event.target.classList.contains('delete-button')) {
-      deleteTodo(event.target.parentElement.getAttribute('data-key'));
-    }
-    if (event.target.classList.contains('edit-button')) {
-      editTodo(event.target.parentElement.getAttribute('data-key'));
-    }
-  });
 });
+
+function editTodo(id) {
+  const todoIndex = todos.findIndex(item => item.id == id);
+  if (todoIndex !== 1) {
+    const todo = todos[todoIndex];
+    todoInput.value = todo.name;
+    todos.splice(todoIndex, 1);
+    addToLocalStorage(todos);
+
+  }
+}
+
 
 //toast message
 function showToast(message) {

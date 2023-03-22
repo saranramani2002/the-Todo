@@ -2,6 +2,13 @@
     padding: 0;
     margin: 0;
   }
+  .topic{
+    padding-top:6%; 
+    font-family:san-serif; 
+    background: -webkit-linear-gradient(90deg, #030101,hwb(270 56% 43%),#030707);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
   body {
     display: flex;
     justify-content: center;
