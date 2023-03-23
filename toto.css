@@ -19,7 +19,7 @@
   }
   button:hover {
     cursor: pointer;
-    background-color: #73E831;
+    background-color: #7b807b;
   }
   ul {
     list-style-type: none; 
@@ -74,14 +74,14 @@
   .checkbox {
     margin-right: 10px;
   }
-  .delete-button {
+  .delete-button{
     float: right;
     background-color:rgb(90, 84, 84);
     border: none;
     border-radius: 7px;
     padding: 2px 5px;
     margin-left: 10px;
-    font-size: 1.1rem; 
+    font-size: 1.1rem;
   }
   .edit-button {
     float: right;
@@ -101,9 +101,19 @@
   bottom: 83.8%;
   left: 80%;
   padding: 10px 20px;
-  background-color: #333;
+  background-color: #39d15a;
   color: #fff;
   border-radius: 10px;
   
 }
+.Toast {
+  position:static;
+  bottom: 83.8%;
+  left: 80%;
+  padding: 10px 20px;
+  background-color: #f8871d;
+  color: #fff;
+  border-radius: 10px;
+}
+
 

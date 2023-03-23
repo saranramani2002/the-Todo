@@ -92,7 +92,7 @@ function deleteTodo(id) {
     todos = todos.filter(function (item) {
       return item.id != id;
     });
-
+    showToas("This Task was deleted Successfully");
     addToLocalStorage(todos);
 
   }
@@ -147,3 +147,13 @@ const disableButtons = (bool) => {
   })
 }
 ////toast for delete remaining
+function showToas(Message) {
+  //let message = type === 'edited' ? 'Your task has been Updated' : 'New task has been Added';
+  const Toast = document.createElement('div');  //is to organize the toast in a form
+  Toast.classList.add('Toast');
+  Toast.textContent = Message;
+  document.body.appendChild(Toast);
+  setTimeout(() => {
+    Toast.remove();
+  }, 3000);
+}
